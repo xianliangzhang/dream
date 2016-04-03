@@ -1,1 +1,6 @@
+<<<<<<< HEAD
 Here is from master.branch.
+=======
+Here is from develop.branch.
+God help me.
+>>>>>>> ebbce75fdbdceb6fe62ecc7a0c7423c99bf05704
