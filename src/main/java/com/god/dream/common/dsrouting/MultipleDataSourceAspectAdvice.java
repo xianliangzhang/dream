@@ -27,7 +27,7 @@ public class MultipleDataSourceAspectAdvice {
         if (null != annotation && ((TargetDataSource) annotation).value() != null) {
             MultipleDataSource.setDataSourceKey(((TargetDataSource) annotation).value().toString());
         } else {
-            MultipleDataSource.setDataSourceKey(DataSourceKey.god.toString());
+            MultipleDataSource.setDataSourceKey(DataSourceKey.DATASOURCE_GOD.toString());
         }
     }
 }

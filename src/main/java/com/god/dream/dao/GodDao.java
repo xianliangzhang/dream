@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 /**
  * Created by Willer on 16/4/9.
  */
-@TargetDataSource(DataSourceKey.god)
+@TargetDataSource(DataSourceKey.DATASOURCE_GOD)
 public interface GodDao {
     public User find(Long id);
     public void save(User user);
