@@ -14,14 +14,14 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
     @Autowired
-    private GodDao gotDao;
+    private GodDao godDao;
 
     @Autowired
     private DevilDao devilDao;
 
     @Transactional
     public User findGod(Long id) {
-        return gotDao.find(id);
+        return godDao.find(id);
     }
 
     @Transactional
@@ -31,7 +31,7 @@ public class UserService {
 
     @Transactional
     public void saveGod(User user) {
-        gotDao.save(user);
+        godDao.save(user);
     }
 
     @Transactional
@@ -41,7 +41,7 @@ public class UserService {
 
     @Transactional
     public void saveTransactionFail(User user) {
-        gotDao.save(user);
+        godDao.save(user);
         devilDao.save(user);
         throw new RuntimeException("Here is just a test for rollback");
     }
