@@ -6,28 +6,23 @@ import sun.security.krb5.internal.crypto.Des;
  * Created by Willer on 16/4/4.
  */
 public class GodTest {
-    public interface Destination {
-        public String readLabel();
-    }
+    enum Color {
+        RED("红色", 1), GREEN("绿色", 2);
 
-    public Destination destination() {
-        class MyDestination implements Destination {
-            public String readLabel() {
-                return "God Is Dead";
-            }
+        private String color;
+        private int index;
+
+        Color(String tag, int index) {
+            this.color = tag;
+            this.index = index;
         }
-        return new MyDestination();
+
+        public String toString() {
+            return this.color;
+        }
     }
 
-    public Destination destination2() {
-        return new Destination() {
-            @Override
-            public String readLabel() {
-                return "God Is Dead";
-            }
-        };
-    }
     public static void main(String[] args) {
-        System.out.println("God Is Dead!");
+        System.out.println(Color.RED + ", " + Color.RED.ordinal() + Color.RED.index);
     }
 }

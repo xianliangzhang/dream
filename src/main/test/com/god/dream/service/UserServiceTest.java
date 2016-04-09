@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * Created by Willer on 16/4/9.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:dream-context.xml"})
+@ContextConfiguration(locations = {"classpath:dream-mybatis.xml"})
 public class UserServiceTest {
 
     @Autowired
@@ -19,8 +19,11 @@ public class UserServiceTest {
 
     @Test
     public void test() {
-        User user = userService.lookupUserById(1L);
-        System.out.println(user.getId() + " -" + user.getName());
+        User devil = userService.findDevil(1L);
+        System.out.println(devil);
+
+        User god = userService.findGod(1L);
+        System.out.println(god);
     }
 
 }
