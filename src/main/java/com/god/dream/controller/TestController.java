@@ -20,7 +20,7 @@ public class TestController {
     @ResponseBody
     @RequestMapping
     public String test() {
-        User user = userService.lookupUserById(1L);
+        //User user = userService.lookupUserById(1L);
         return "OK";
     }
 }

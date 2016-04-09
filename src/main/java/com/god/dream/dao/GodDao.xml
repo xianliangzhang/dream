@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.god.dream.dao.GodDao">
+
+    <resultMap id="userMap" type="com.god.dream.model.User">
+        <id property="id" column="id"/>
+
+        <result property="name" column="name"/>
+        <result property="password" column="password"/>
+    </resultMap>
+
+    <select id="find" parameterType="long" resultMap="userMap">
+        select id, name, password from t_user where id = #{0}
+    </select>
+
+    <insert id="save" parameterType="com.god.dream.model.User" useGeneratedKeys="true" keyProperty="id">
+        insert into t_user(name, password) values (#{name}, #{password})
+    </insert>
+</mapper>

@@ -8,6 +8,10 @@ public class User {
     private String name;
     private String password;
 
+    public String toString() {
+        return this.id + ": " + name + ", " + password;
+    }
+
     public Long getId() {
         return id;
     }
