@@ -8,7 +8,7 @@
     <!-- Spring context -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:dream-context.xml</param-value>
+        <param-value>classpath:dream-context.xml, classpath:dream-mybatis.xml</param-value>
     </context-param>
 
     <!-- 此Listener 用于加载 除 *-servlet.xml 文件以外的xml，并且在 contextConfigLocation 路径中已经定义 -->
