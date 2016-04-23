@@ -34,30 +34,30 @@
         <property name="password" value="hk1997"/>
     </bean>
 
-    <bean id="multipleDataSource" class="com.god.dream.common.dsrouting.MultipleDataSource">
-        <property name="defaultTargetDataSource" ref="dataSourceBoss"/>
-        <property name="targetDataSources">
-            <map>
-                <entry key="boss" value-ref="dataSourceBoss"/>
-                <entry key="ksy_users" value-ref="dataSourceKsyUsers"/>
-            </map>
-        </property>
-    </bean>
+    <!--<bean id="multipleDataSource" class="com.god.dream.common.dsrouting.MultipleDataSource">-->
+        <!--<property name="defaultTargetDataSource" ref="dataSourceBoss"/>-->
+        <!--<property name="targetDataSources">-->
+            <!--<map>-->
+                <!--<entry key="boss" value-ref="dataSourceBoss"/>-->
+                <!--<entry key="ksy_users" value-ref="dataSourceKsyUsers"/>-->
+            <!--</map>-->
+        <!--</property>-->
+    <!--</bean>-->
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="multipleDataSource"/>
+        <property name="dataSource" ref="dataSourceBoss"/>
     </bean>
 
     <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.god.dream"/>
+        <property name="basePackage" value="com.god.dream.boss.dao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
     </bean>
 
     <!-- 事务管理-->
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="multipleDataSource"/>
+    <bean id="transactionManagerBoss" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSourceBoss"/>
     </bean>
-    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <tx:annotation-driven transaction-manager="transactionManagerBoss"/>
 
 </beans>
