@@ -16,6 +16,7 @@ public class StatusCode {
     public static final int STATUS_FAILURE = 0;
     public static final int STATUS_SUCCESS = 1;
 
+    // 一次性加载所有配置文件中的信息
     static {
         try (Reader reader = new InputStreamReader(StatusCode.class.getResourceAsStream("status.properties"), "UTF-8")) {
             properties.load(reader);
@@ -24,10 +25,12 @@ public class StatusCode {
         }
     }
 
+    // 禁止实例化该类
     private StatusCode() {
         throw new IllegalAccessError("StatusCode Cannot be Instanced!");
     }
 
+    // 获取错误码在配置文件中对应的错误提示信息
     public static String message(int code) {
         return properties.getProperty("status.".concat(String.valueOf(code)));
     }
