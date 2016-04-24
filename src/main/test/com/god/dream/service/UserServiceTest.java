@@ -1,6 +1,7 @@
 package com.god.dream.service;
 
-import com.god.dream.model.User;
+import com.god.dream.boss.model.region.Region;
+import com.god.dream.boss.service.region.RegionService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,15 +16,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class UserServiceTest {
 
     @Autowired
-    private UserService userService;
+    private RegionService regionService;
 
     @Test
     public void test() {
-        User devil = userService.findDevil(1L);
-        System.out.println(devil);
-
-        User god = userService.findGod(1L);
-        System.out.println(god);
+        Region region = regionService.find(1L);
+        System.out.println();
     }
-
 }

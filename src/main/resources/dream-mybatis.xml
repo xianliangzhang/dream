@@ -2,14 +2,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
     http://www.springframework.org/schema/context
-    http://www.springframework.org/schema/context/spring-context.xsd
-	http://www.springframework.org/schema/aop
-    http://www.springframework.org/schema/aop/spring-aop.xsd"
+    http://www.springframework.org/schema/context/spring-context.xsd"
        default-lazy-init="false">
 
     <!-- 加载所有Controller之外的Spring实例 -->
@@ -17,47 +14,10 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
-    <!-- AOP 动态切换数据源 -->
-    <aop:aspectj-autoproxy/>
+    <!-- 引入所有数据源配置文件 -->
+    <import resource="classpath:datasource/*.xml"/>
 
-    <bean id="dataSourceBoss" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://10.146.16.208:3306/boss_develop"/>
-        <property name="username" value="root"/>
-        <property name="password" value="123456"/>
-    </bean>
-
-    <bean id="dataSourceKsyUsers" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://10.0.3.199:3306/ksyusers"/>
-        <property name="username" value="root"/>
-        <property name="password" value="hk1997"/>
-    </bean>
-
-    <!--<bean id="multipleDataSource" class="com.god.dream.common.dsrouting.MultipleDataSource">-->
-        <!--<property name="defaultTargetDataSource" ref="dataSourceBoss"/>-->
-        <!--<property name="targetDataSources">-->
-            <!--<map>-->
-                <!--<entry key="boss" value-ref="dataSourceBoss"/>-->
-                <!--<entry key="ksy_users" value-ref="dataSourceKsyUsers"/>-->
-            <!--</map>-->
-        <!--</property>-->
-    <!--</bean>-->
-
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSourceBoss"/>
-    </bean>
-
-    <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.god.dream.boss.dao"/>
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
-    </bean>
-
-    <!-- 事务管理-->
-    <bean id="transactionManagerBoss" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSourceBoss"/>
-    </bean>
-    <tx:annotation-driven transaction-manager="transactionManagerBoss"/>
+    <!-- 启用事务注解 -->
+    <tx:annotation-driven/>
 
 </beans>
