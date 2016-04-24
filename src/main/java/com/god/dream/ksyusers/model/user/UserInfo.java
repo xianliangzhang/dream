@@ -6,5 +6,5 @@ package com.god.dream.ksyusers.model.user;
 public class UserInfo {
     public Long id;
     public String name;
-    public String emai;
+    public String email;
 }

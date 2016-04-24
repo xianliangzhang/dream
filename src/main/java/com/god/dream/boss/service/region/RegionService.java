@@ -15,7 +15,7 @@ public class RegionService {
     @Autowired
     private RegionDao regionDao;
 
-    @Transactional(readOnly = true)
+    @Transactional
     public Region find(Long regionId) {
         return regionDao.find(regionId);
     }
