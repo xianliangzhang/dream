@@ -1,28 +1,30 @@
 package com.god.dream;
 
-import sun.security.krb5.internal.crypto.Des;
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by Willer on 16/4/4.
  */
 public class GodTest {
-    enum Color {
-        RED("红色", 1), GREEN("绿色", 2);
 
-        private String color;
-        private int index;
+    public static void main(String[] args) throws Exception {
+        InputStream in = new FileInputStream("/Users/Hack/Pictures/a7a90ce0aa79d532aec3eca73a1b3513.jpg");
+        OutputStream out = new FileOutputStream(new File("/Users/lab/a.jpg"));
 
-        Color(String tag, int index) {
-            this.color = tag;
-            this.index = index;
+        int read = -1;
+        byte[] bytes = new byte[1024];
+        while ((read = in.read()) != -1) {
+            out.write(bytes);
         }
+        out.close();
 
-        public String toString() {
-            return this.color;
-        }
+        System.out.println("OK");
     }
 
-    public static void main(String[] args) {
-        System.out.println(Color.RED + ", " + Color.RED.ordinal() + Color.RED.index);
-    }
+
+
 }
